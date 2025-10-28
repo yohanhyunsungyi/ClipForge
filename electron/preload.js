@@ -1,7 +1,8 @@
-const { contextBridge } = require('electron');
+const { contextBridge, ipcRenderer } = require('electron');
 
 // Expose protected methods that allow the renderer process to use
 // the ipcRenderer without exposing the entire object
 contextBridge.exposeInMainWorld('electron', {
-  // IPC methods will be added in PR #2
+  importVideo: () => ipcRenderer.invoke('import-video'),
+  getVideoMetadata: (filePath) => ipcRenderer.invoke('get-video-metadata', filePath)
 });

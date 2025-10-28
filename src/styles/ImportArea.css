@@ -1,0 +1,88 @@
+.import-area-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.import-area {
+  border: 3px dashed #555;
+  border-radius: 12px;
+  padding: 60px 40px;
+  text-align: center;
+  background-color: #2a2a2a;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.import-area:hover {
+  border-color: #61dafb;
+  background-color: #2f2f2f;
+}
+
+.import-area.dragging {
+  border-color: #61dafb;
+  background-color: #333;
+  transform: scale(1.02);
+}
+
+.import-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.import-text {
+  font-size: 1.2rem;
+  color: #fff;
+  margin: 10px 0;
+}
+
+.import-subtext {
+  font-size: 1rem;
+  color: #999;
+  margin: 10px 0;
+}
+
+.import-button {
+  background-color: #61dafb;
+  color: #000;
+  border: none;
+  padding: 12px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: 20px 0;
+  transition: background-color 0.2s ease;
+}
+
+.import-button:hover {
+  background-color: #4fa8c5;
+}
+
+.import-button:active {
+  transform: scale(0.98);
+}
+
+.import-formats {
+  font-size: 0.85rem;
+  color: #777;
+  margin-top: 15px;
+}
+
+.import-status {
+  padding: 20px;
+}
+
+.import-status p {
+  font-size: 1.1rem;
+  color: #61dafb;
+}
+
+.import-error {
+  margin-top: 15px;
+  padding: 12px;
+  background-color: #ff4444;
+  color: #fff;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
