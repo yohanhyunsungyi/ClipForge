@@ -94,7 +94,9 @@ body {
 /* Timeline Section - Bottom area */
 .timeline-section {
   flex-shrink: 0;
-  max-height: 200px;
+  height: 200px;
+  min-height: 200px;
+  overflow: hidden;
 }
 
 /* Export Button */

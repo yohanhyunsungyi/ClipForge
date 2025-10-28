@@ -3,7 +3,13 @@ import { useVideo } from '../context/VideoContext';
 import '../styles/TrimControls.css';
 
 function TrimControls() {
-  const { currentClip } = useVideo();
+  const { currentClip, removeClip } = useVideo();
+
+  const handleDeleteClip = () => {
+    if (currentClip && window.confirm('Are you sure you want to remove this video?')) {
+      removeClip(currentClip.id);
+    }
+  };
 
   const formatTime = (timeInSeconds) => {
     if (isNaN(timeInSeconds)) return '0:00';
@@ -28,8 +34,17 @@ function TrimControls() {
   return (
     <div className="trim-controls-container">
       <div className="trim-controls-header">
-        <h3>Trim Controls</h3>
-        <span className="trim-help">Drag handles on timeline to trim</span>
+        <div className="trim-controls-title">
+          <h3>Trim Controls</h3>
+          <span className="trim-help">Drag handles on timeline to trim</span>
+        </div>
+        <button
+          className="delete-clip-button"
+          onClick={handleDeleteClip}
+          title="Remove this video"
+        >
+          🗑️ Remove Video
+        </button>
       </div>
 
       <div className="trim-controls-content">
