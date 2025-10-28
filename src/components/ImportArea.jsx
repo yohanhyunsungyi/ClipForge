@@ -33,6 +33,10 @@ function ImportArea() {
   };
 
   const handleFilePickerClick = async () => {
+    if (!window.electron) {
+      setError('File import is only available in Electron app');
+      return;
+    }
     const filePath = await window.electron.importVideo();
     if (filePath) {
       await importVideo(filePath);
@@ -40,6 +44,11 @@ function ImportArea() {
   };
 
   const importVideo = async (filePath) => {
+    if (!window.electron) {
+      setError('Video import is only available in Electron app');
+      return;
+    }
+
     setIsImporting(true);
     setError(null);
 

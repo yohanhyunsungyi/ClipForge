@@ -9,7 +9,7 @@ function ExportModal({ isOpen, onClose }) {
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
-    if (!isOpen) {
+    if (!isOpen || !window.electron) {
       return;
     }
 
@@ -35,6 +35,12 @@ function ExportModal({ isOpen, onClose }) {
   }, [isOpen]);
 
   const handleExport = async () => {
+    if (!window.electron) {
+      setStatus('error');
+      setErrorMessage('Export is only available in Electron app');
+      return;
+    }
+
     if (!currentClip) {
       setStatus('error');
       setErrorMessage('No clip selected');
