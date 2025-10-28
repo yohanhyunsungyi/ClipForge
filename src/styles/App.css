@@ -4,22 +4,30 @@
   box-sizing: border-box;
 }
 
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #1e1e1e;
 }
 
 .app-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
+  padding: 2rem;
+  min-height: 100vh;
+  height: 100%;
   background-color: #1e1e1e;
   color: #ffffff;
+  overflow-y: auto;
 }
 
 .app-container h1 {
@@ -30,4 +38,33 @@ body {
 .app-container p {
   font-size: 1.2rem;
   color: #888;
+}
+
+.export-section {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  justify-content: center;
+}
+
+.export-trigger-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: bold;
+}
+
+.export-trigger-button:hover {
+  background-color: #45a049;
+}
+
+.export-trigger-button:disabled {
+  background-color: #666666;
+  cursor: not-allowed;
 }

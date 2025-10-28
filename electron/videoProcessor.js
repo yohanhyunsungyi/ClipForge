@@ -37,6 +37,49 @@ function getVideoMetadata(filePath) {
   });
 }
 
+/**
+ * Export video with trim using FFmpeg
+ * @param {string} inputPath - Absolute path to input video file
+ * @param {string} outputPath - Absolute path to output video file
+ * @param {number} inPoint - Start time in seconds
+ * @param {number} outPoint - End time in seconds
+ * @param {function} onProgress - Callback function for progress updates
+ * @returns {Promise<void>}
+ */
+function exportVideo(inputPath, outputPath, inPoint, outPoint, onProgress) {
+  return new Promise((resolve, reject) => {
+    const duration = outPoint - inPoint;
+
+    ffmpeg(inputPath)
+      .setStartTime(inPoint)
+      .setDuration(duration)
+      .outputOptions('-c copy') // Codec copy for fast export
+      .on('start', (commandLine) => {
+        console.log('FFmpeg command:', commandLine);
+      })
+      .on('progress', (progress) => {
+        if (onProgress) {
+          // Calculate percentage based on timemark
+          const percent = progress.percent || 0;
+          onProgress({
+            percent: Math.min(100, Math.max(0, percent)),
+            timemark: progress.timemark
+          });
+        }
+      })
+      .on('end', () => {
+        console.log('Export completed successfully');
+        resolve();
+      })
+      .on('error', (err) => {
+        console.error('Export error:', err);
+        reject(err);
+      })
+      .save(outputPath);
+  });
+}
+
 module.exports = {
-  getVideoMetadata
+  getVideoMetadata,
+  exportVideo
 };
