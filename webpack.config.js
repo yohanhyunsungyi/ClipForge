@@ -42,5 +42,5 @@ module.exports = {
     port: 3000,
     hot: true
   },
-  target: 'electron-renderer'
+  target: 'web'  // Changed from electron-renderer to web
 };

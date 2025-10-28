@@ -1,15 +1,30 @@
 .trim-controls-container {
   background: #2a2a2a;
   border-radius: 8px;
-  padding: 20px;
-  margin: 20px 0;
+  padding: 1rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.trim-controls-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
 }
 
 .trim-controls-header h3 {
-  margin: 0 0 15px 0;
+  margin: 0;
   color: #ffffff;
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: 600;
+}
+
+.trim-help {
+  font-size: 0.75rem;
+  color: #888;
+  font-style: italic;
 }
 
 .trim-controls-placeholder {
@@ -18,79 +33,47 @@
   color: #888;
 }
 
+.trim-hint {
+  font-size: 0.85rem;
+  color: #61dafb;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
 .trim-controls-content {
   display: flex;
   gap: 20px;
   align-items: center;
-}
-
-.trim-section {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  justify-content: space-around;
 }
 
 .trim-info {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 10px;
-  font-size: 14px;
+  flex: 1;
 }
 
 .trim-info label {
   color: #aaa;
   font-weight: 500;
-  min-width: 70px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .trim-value {
   color: #ffffff;
   font-family: 'Courier New', monospace;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   background: #1a1a1a;
-  padding: 5px 10px;
-  border-radius: 4px;
-  min-width: 100px;
-  text-align: center;
-}
-
-.trim-button {
-  background: #0066ff;
-  color: white;
-  border: none;
+  padding: 10px 15px;
   border-radius: 6px;
-  padding: 10px 20px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.trim-button:hover {
-  background: #0052cc;
-}
-
-.trim-button:active {
-  background: #003d99;
-  transform: translateY(1px);
-}
-
-.set-in-button {
-  background: #00aa00;
-}
-
-.set-in-button:hover {
-  background: #008800;
-}
-
-.set-out-button {
-  background: #cc0000;
-}
-
-.set-out-button:hover {
-  background: #aa0000;
+  min-width: 120px;
+  text-align: center;
+  border: 2px solid #333;
 }
 
 .trim-duration {

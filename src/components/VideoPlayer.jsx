@@ -13,6 +13,8 @@ function VideoPlayer() {
   useEffect(() => {
     if (currentClip && videoRef.current) {
       videoRef.current.load();
+      videoRef.current.volume = 1.0; // Ensure volume is at maximum
+      videoRef.current.muted = false; // Ensure not muted
       setIsPlaying(false);
       setCurrentTime(0);
     }

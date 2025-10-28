@@ -1,7 +1,42 @@
 const ffmpeg = require('fluent-ffmpeg');
-const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
+const path = require('path');
+const { app } = require('electron');
+
+// Determine FFmpeg and FFprobe paths based on environment
+let ffmpegPath, ffprobePath;
+
+if (app.isPackaged) {
+  // In production, use bundled FFmpeg from resources
+  const resourcesPath = process.resourcesPath;
+  const platform = process.platform;
+  const arch = process.arch;
+
+  if (platform === 'darwin') {
+    // macOS: arm64 or x64
+    const platformDir = arch === 'arm64' ? 'darwin-arm64' : 'darwin-x64';
+    ffmpegPath = path.join(resourcesPath, 'ffmpeg-installer', platformDir, 'ffmpeg');
+    ffprobePath = path.join(resourcesPath, 'ffprobe-installer', platformDir, 'ffprobe');
+  } else if (platform === 'win32') {
+    // Windows: x64 or ia32
+    const platformDir = arch === 'x64' ? 'win32-x64' : 'win32-ia32';
+    ffmpegPath = path.join(resourcesPath, 'ffmpeg-installer', platformDir, 'ffmpeg.exe');
+    ffprobePath = path.join(resourcesPath, 'ffprobe-installer', platformDir, 'ffprobe.exe');
+  } else {
+    // Linux: x64, ia32, or arm64
+    const platformDir = `linux-${arch}`;
+    ffmpegPath = path.join(resourcesPath, 'ffmpeg-installer', platformDir, 'ffmpeg');
+    ffprobePath = path.join(resourcesPath, 'ffprobe-installer', platformDir, 'ffprobe');
+  }
+} else {
+  // In development, use @ffmpeg-installer and @ffprobe-installer
+  ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
+  ffprobePath = require('@ffprobe-installer/ffprobe').path;
+}
 
 ffmpeg.setFfmpegPath(ffmpegPath);
+ffmpeg.setFfprobePath(ffprobePath);
+console.log('FFmpeg path:', ffmpegPath);
+console.log('FFprobe path:', ffprobePath);
 
 /**
  * Extract video metadata using FFprobe

@@ -27,7 +27,15 @@ function ImportArea() {
 
     const files = e.dataTransfer.files;
     if (files.length > 0) {
-      const filePath = files[0].path;
+      // In Electron, File objects have a 'path' property
+      const file = files[0];
+      const filePath = file.path || file.name;
+
+      if (!filePath || filePath === file.name) {
+        setError('Unable to access file path. Please use the file picker instead.');
+        return;
+      }
+
       await importVideo(filePath);
     }
   };

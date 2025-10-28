@@ -16,55 +16,113 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #1e1e1e;
+  overflow: hidden;
 }
 
 .app-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 2rem;
-  min-height: 100vh;
-  height: 100%;
+  height: 100vh;
+  width: 100vw;
   background-color: #1e1e1e;
   color: #ffffff;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
-.app-container h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+/* Header Section */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #252525;
+  border-bottom: 1px solid #333;
+  flex-shrink: 0;
 }
 
-.app-container p {
-  font-size: 1.2rem;
+.header-content h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+.header-content p {
+  font-size: 0.875rem;
   color: #888;
 }
 
-.export-section {
-  margin-top: 20px;
-  width: 100%;
-  max-width: 800px;
+/* Main Content Area */
+.app-main {
+  flex: 1;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 1rem;
+  gap: 1rem;
 }
 
+/* Video Section - Takes majority of space */
+.video-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Controls Section - Horizontal layout */
+.controls-section {
+  display: flex;
+  gap: 1rem;
+  align-items: stretch;
+  flex-shrink: 0;
+}
+
+.controls-left {
+  flex: 1;
+  min-width: 0;
+}
+
+.controls-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Timeline Section - Bottom area */
+.timeline-section {
+  flex-shrink: 0;
+  max-height: 200px;
+}
+
+/* Export Button */
 .export-trigger-button {
   background-color: #4CAF50;
   color: white;
   border: none;
-  padding: 15px 30px;
-  font-size: 18px;
-  border-radius: 5px;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s;
-  font-weight: bold;
+  transition: background-color 0.2s, transform 0.1s;
+  font-weight: 600;
+  white-space: nowrap;
+  height: fit-content;
 }
 
 .export-trigger-button:hover {
   background-color: #45a049;
+  transform: translateY(-1px);
+}
+
+.export-trigger-button:active {
+  transform: translateY(0);
 }
 
 .export-trigger-button:disabled {
   background-color: #666666;
   cursor: not-allowed;
+  transform: none;
 }

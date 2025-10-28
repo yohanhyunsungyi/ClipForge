@@ -60,23 +60,77 @@
   right: 0;
 }
 
-/* Trim handles */
+/* Trim handles - Draggable */
 .trim-handle {
   position: absolute;
   top: 0;
   bottom: 0;
+  width: 12px;
+  cursor: ew-resize;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  pointer-events: all;
+}
+
+.trim-handle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
   width: 3px;
-  background: #ffcc00;
-  z-index: 2;
-  pointer-events: none;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .trim-handle-in {
+  transform: translateX(-6px);
+}
+
+.trim-handle-in::before {
   background: #00ff00;
-  box-shadow: 0 0 4px rgba(0, 255, 0, 0.8);
+  box-shadow: 0 0 6px rgba(0, 255, 0, 0.8);
 }
 
 .trim-handle-out {
+  transform: translateX(-6px);
+}
+
+.trim-handle-out::before {
   background: #ff0000;
-  box-shadow: 0 0 4px rgba(255, 0, 0, 0.8);
+  box-shadow: 0 0 6px rgba(255, 0, 0, 0.8);
+}
+
+.trim-handle:hover::before {
+  width: 5px;
+  box-shadow: 0 0 12px currentColor;
+}
+
+.trim-handle.active::before {
+  width: 6px;
+  box-shadow: 0 0 16px currentColor;
+}
+
+.trim-handle-icon {
+  font-size: 8px;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.8;
+}
+
+.trim-handle:hover .trim-handle-icon {
+  opacity: 1;
+  font-size: 10px;
+}
+
+.timeline-clip.dragging {
+  cursor: ew-resize;
+}
+
+.timeline-clip.dragging .timeline-clip-content {
+  pointer-events: none;
 }
