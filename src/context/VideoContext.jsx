@@ -5,6 +5,7 @@ const VideoContext = createContext();
 export function VideoProvider({ children }) {
   const [clips, setClips] = useState([]);
   const [currentClip, setCurrentClip] = useState(null);
+  const [playhead, setPlayhead] = useState(0);
 
   const addClip = (clip) => {
     const newClip = {
@@ -41,7 +42,9 @@ export function VideoProvider({ children }) {
     setCurrentClip,
     addClip,
     removeClip,
-    updateClipTrim
+    updateClipTrim,
+    playhead,
+    setPlayhead
   };
 
   return (
