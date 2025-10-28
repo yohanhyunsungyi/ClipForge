@@ -4,6 +4,11 @@ import '../styles/TimelineClip.css';
 function TimelineClip({ clip, pixelsPerSecond, onClick }) {
   const widthInPixels = clip.duration * pixelsPerSecond;
 
+  // Calculate trim indicator positions
+  const inPointPosition = clip.inPoint * pixelsPerSecond;
+  const outPointPosition = clip.outPoint * pixelsPerSecond;
+  const trimmedWidth = (clip.outPoint - clip.inPoint) * pixelsPerSecond;
+
   return (
     <div
       className="timeline-clip"
@@ -16,6 +21,33 @@ function TimelineClip({ clip, pixelsPerSecond, onClick }) {
           {formatDuration(clip.duration)}
         </div>
       </div>
+
+      {/* Visual trim indicators */}
+      {clip.inPoint > 0 && (
+        <div
+          className="trim-overlay trim-overlay-left"
+          style={{ width: `${inPointPosition}px` }}
+        />
+      )}
+      {clip.outPoint < clip.duration && (
+        <div
+          className="trim-overlay trim-overlay-right"
+          style={{
+            left: `${outPointPosition}px`,
+            width: `${(clip.duration - clip.outPoint) * pixelsPerSecond}px`
+          }}
+        />
+      )}
+
+      {/* Trim handles */}
+      <div
+        className="trim-handle trim-handle-in"
+        style={{ left: `${inPointPosition}px` }}
+      />
+      <div
+        className="trim-handle trim-handle-out"
+        style={{ left: `${outPointPosition}px` }}
+      />
     </div>
   );
 }

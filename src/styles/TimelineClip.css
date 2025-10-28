@@ -41,3 +41,42 @@
   color: rgba(255, 255, 255, 0.8);
   font-family: 'Courier New', monospace;
 }
+
+/* Trim overlays - dimmed regions */
+.trim-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.trim-overlay-left {
+  left: 0;
+}
+
+.trim-overlay-right {
+  right: 0;
+}
+
+/* Trim handles */
+.trim-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: #ffcc00;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.trim-handle-in {
+  background: #00ff00;
+  box-shadow: 0 0 4px rgba(0, 255, 0, 0.8);
+}
+
+.trim-handle-out {
+  background: #ff0000;
+  box-shadow: 0 0 4px rgba(255, 0, 0, 0.8);
+}

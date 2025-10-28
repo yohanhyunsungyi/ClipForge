@@ -2,6 +2,7 @@ import React from 'react';
 import { VideoProvider } from './context/VideoContext';
 import ImportArea from './components/ImportArea';
 import VideoPlayer from './components/VideoPlayer';
+import TrimControls from './components/TrimControls';
 import Timeline from './components/Timeline';
 import './styles/App.css';
 
@@ -13,6 +14,7 @@ function App() {
         <p>Desktop Video Editor</p>
         <ImportArea />
         <VideoPlayer />
+        <TrimControls />
         <Timeline />
       </div>
     </VideoProvider>

@@ -25,6 +25,10 @@ function VideoPlayer() {
       videoRef.current.pause();
       setIsPlaying(false);
     } else {
+      // When starting playback, ensure we're within trim boundaries
+      if (currentClip && videoRef.current.currentTime < currentClip.inPoint) {
+        videoRef.current.currentTime = currentClip.inPoint;
+      }
       videoRef.current.play();
       setIsPlaying(true);
     }
@@ -35,6 +39,14 @@ function VideoPlayer() {
       const time = videoRef.current.currentTime;
       setCurrentTime(time);
       setPlayhead(time);
+
+      // Enforce trim boundaries - pause when reaching out-point
+      if (currentClip && time >= currentClip.outPoint) {
+        videoRef.current.pause();
+        setIsPlaying(false);
+        // Keep playhead at out-point
+        videoRef.current.currentTime = currentClip.outPoint;
+      }
     }
   };
 
